@@ -97,7 +97,6 @@ def assert_vector(vector1, vector2, sign):
 
 def draw_schedule(test_case, record_dir='tmp/', options=None):
     file_json = '%sschedule_%s.json' % (record_dir, test_case['doc'])
-    # log.warn('DAN: record_dir = %s, test_case[doc] = %s' % (record_dir, test_case['doc']))
     if not os.path.isfile(file_json):
         log.warn('Not exist %s' % file_json)
         return

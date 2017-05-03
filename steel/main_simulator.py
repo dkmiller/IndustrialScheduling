@@ -72,7 +72,6 @@ def run_rtn(case, options):
 def simulate(group_num, rtn_t0=15, plant='plant1', model='rtn2', suffix='', heu=False, acc=False, heu_all=False):
     # DAN: this load is working.
     test_case = json.load(open('data/%s_%s.json' % (plant, model), 'r'))
-    #log.warn("DAN: test_case = %s" % test_case)
 
     # test_case['energy_price'] = [10, 20] + [h*h+5 for h in range(21, -1, -1)]
     # json.dump(test_case, open('data/a2_rtn2.json', 'w+'), indent=2)
@@ -128,8 +127,6 @@ def simulate(group_num, rtn_t0=15, plant='plant1', model='rtn2', suffix='', heu=
     if bool_display:
         if bool_heat_trick:
             test_case['equip2process_time'] = original_process_time
-        # log.warn("DAN: test_case = %s\nDAN: opt_options = %s" % (test_case, opt_options))
-        # DAN: opt_options is being passed as the record_dir. This is bad!
         steel_util.draw_schedule(test_case)
 
 if __name__ == "__main__":
@@ -149,5 +146,4 @@ if __name__ == "__main__":
                 for heu_eaf in [False]:
                     for bool_heat_trick in [False]:
                         for heu_all_stages in [False]:
-                            log.warn("DAN: simulating group %s" % group)
                             simulate(group, rtn_t0=t, heu=heu_eaf, acc=acc_wait, model='rtn2', heu_all=heu_all_stages, plant='plant2')
