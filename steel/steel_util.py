@@ -97,6 +97,7 @@ def assert_vector(vector1, vector2, sign):
 
 def draw_schedule(test_case, record_dir='tmp/', options=None):
     file_json = '%sschedule_%s.json' % (record_dir, test_case['doc'])
+    # log.warn('DAN: record_dir = %s, test_case[doc] = %s' % (record_dir, test_case['doc']))
     if not os.path.isfile(file_json):
         log.warn('Not exist %s' % file_json)
         return
@@ -124,6 +125,7 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
             opt_math_model = OptModelBuilderRTN2(steel_rtn, options)
         else:
             opt_math_model = None
+        # DAN: so xx needs to be an array!
         y_en = opt_math_model.con_en_x.dot(np.array(xx))
         energy_cost = np.dot(y_en, np.array(steel_rtn.price_energy))
         log.info('Calculated Energy Cost %f' % energy_cost)
@@ -507,4 +509,3 @@ class SteelHelper():
                             [opt_math_model.steel_rtn.task_length[i] for i in [EAF, EA, AOD, AL, LF, LC]])
                         task_start_latest[cast_task] = para.num_t - opt_math_model.steel_rtn.task_length[cast_task]
         return task_start_earliest, task_start_latest
-
