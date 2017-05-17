@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 
-matplotlib.rcParams.update({'font.size': 12})
+matplotlib.rcParams.update({'font.size': 9})
 # matplotlib.rcParams.update({'lines.linewidth': 5})
 # matplotlib.rcParams.update({'lines.markersize': 9})
 
@@ -45,7 +45,7 @@ plt.bar([3*i for i in range(3, 7)], bene, color='red', width=1.0)
 plt.legend(['with heuristics', 'w/o heuristics'])
 plt.xticks([3*i for i in range(3, 7)], ['G1-G%d' % i for i in range(3, 7)])
 plt.ylabel('Saving [$] compared with benchmark cost')
-plt.savefig('bar_2.pdf')
+plt.savefig('bar_ivy.pdf')
 plt.close()
 
 

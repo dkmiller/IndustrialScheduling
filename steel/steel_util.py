@@ -129,11 +129,12 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
         energy_cost = np.dot(y_en, np.array(steel_rtn.price_energy))
         log.info('Calculated Energy Cost %f' % energy_cost)
 
+# Change this back
     if False:
         plt.figure()
         plt.plot(range(1, 25), test_case['energy_price'], marker='s', markersize=10)
         plt.xlim(0, 25)
-        plt.ylim(0, 100)
+        plt.ylim(0, 50)
         plt.xlabel('Hour')
         plt.ylabel('Price [$\MW]')
         plt.grid(True)
@@ -165,15 +166,15 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
 
     bool_price_cmp = True
     plt.figure()
-    if bool_price_cmp:
-        plt.subplot(211)
-        plt.plot(range(1, 25), test_case['energy_price'], marker='s', markersize=10)
-        plt.xlim(0, 25)
-        plt.ylim(0, 100)
-        plt.xlabel('Hour')
-        plt.ylabel('Price [$\MW]')
-        plt.grid(True)
-        plt.subplot(212)
+    # if bool_price_cmp:
+    #     plt.subplot(211)
+    #     plt.plot(range(1, 25), test_case['energy_price'], marker='s', markersize=8)
+    #     plt.xlim(0, 25)
+    #     plt.ylim(0, 250)
+    #     plt.xlabel('Hour')
+    #     plt.ylabel('Price [$\MW]')
+    #     plt.grid(True)
+    #     plt.subplot(212)
     for task_type, task_list in steel_rtn.tasks.items():
         if 'TR_' in task_type:
             continue
@@ -204,7 +205,7 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
                         plt.plot(body_x, [y_level]*len(body_x), linewidth=15.0, color=color_map[group])
                         plt.plot(tail_x, [y_level]*len(tail_x), linewidth=8.0, color=color_map[group])
                         # plt.text(body_x[int(1.0/3*len(body_x))], y_level, r"%d" % (idx+1), backgroundcolor='white')
-                        plt.text(np.median(x_cod)+0.5, y_level, r"%s%d" % (text_prefix, idx+1), backgroundcolor='white', size=12)
+                        plt.text(np.median(x_cod)+0.5, y_level, r"%s%d" % (text_prefix, idx+1), backgroundcolor='white', size=10)
                         # print task_type, idx+1, '[', t_+1, t_+duration, ']'
     # if steel_rtn.rtn_t0 == 15:
     #     plt.axes().set_aspect(5.0)

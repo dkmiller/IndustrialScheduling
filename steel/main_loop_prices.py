@@ -57,6 +57,7 @@ def run_rtn(case, options, work_dir):
 def simulate(group_num, rtn_t0=15, plant='plant3', model='rtn1', price=[10.0]*24, price_id='0',
              work_dir='/', run_clex=True):
     test_case = json.load(open('data/%s_%s.json' % (plant, model), 'r'))
+    print "opened json file"
 
     test_case['energy_price'] = price
 
@@ -81,6 +82,7 @@ def simulate(group_num, rtn_t0=15, plant='plant3', model='rtn1', price=[10.0]*24
 
 def load_eem_prices(size=None):
     df = pd.read_csv('data/price_eem2016.csv')
+    print "read eem"
     assert len(df) % 24 == 0
 
     df['date'] = pd.to_datetime(df['date'])
@@ -131,12 +133,12 @@ def write_video(date_list):
 if __name__ == "__main__":
     log.info(str(datetime.datetime.now()))
 
-    WORK_DIR_BASE = '../../../../Downloads/data/steel_price/'
+    WORK_DIR_BASE = 'tmp/'
     GROUPS = [3]
 
     prices, dates = load_eem_prices()
 
     run_simulations(prices, dates)
+    print "run_simulations complete"
 
     write_video(dates)
-

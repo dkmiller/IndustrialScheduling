@@ -47,6 +47,7 @@ def run_rtn(case, options):
     #             opt_math_model.num_x, (opt_math_model.num_y+opt_math_model.num_x),
     #             opt_math_model.num_con, opt_math_model.num_t))
 
+#Change this back
     result = solve_cplex(opt_math_model)
     # result = solve_schedule_bb.SteelBranchBound(steel_rtn, opt_math_model).solve_bb()
 
@@ -140,10 +141,10 @@ if __name__ == "__main__":
     # todo tune the price curve here
 
     log.info(str(datetime.datetime.now()))
-    for t in [15]:
-        for group in [3, 4, 5, 6]:
-            for acc_wait in [True]:
+    for t in [60]:
+        for group in [2]:
+            for acc_wait in [False]:
                 for heu_eaf in [False]:
                     for bool_heat_trick in [False]:
                         for heu_all_stages in [False]:
-                            simulate(group, rtn_t0=t, heu=heu_eaf, acc=acc_wait, model='rtn2', heu_all=heu_all_stages, plant='plant2')
+                            simulate(group, rtn_t0=t, heu=heu_eaf, acc=acc_wait, model='rtn2', heu_all=heu_all_stages, plant='a2')

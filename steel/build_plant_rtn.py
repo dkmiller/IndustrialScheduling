@@ -406,8 +406,3 @@ class PlantRtn2Builder(PlantRtnBuilder):
                     profile = profile + [total_energy - sum(profile)] + [0]
                     rtn_profile[self.resources['EN'][0]][task] = profile
         return rtn_profile, heat_consume_time_in_group, heat_generate_time_in_group
-
-
-
-
-
