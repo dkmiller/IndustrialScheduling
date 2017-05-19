@@ -141,10 +141,10 @@ if __name__ == "__main__":
     # todo tune the price curve here
 
     log.info(str(datetime.datetime.now()))
-    for t in [60]:
-        for group in [2]:
+    for t in [15]:
+        for group in [5]:
             for acc_wait in [False]:
                 for heu_eaf in [False]:
                     for bool_heat_trick in [False]:
                         for heu_all_stages in [False]:
-                            simulate(group, rtn_t0=t, heu=heu_eaf, acc=acc_wait, model='rtn2', heu_all=heu_all_stages, plant='a2')
+                            simulate(group, rtn_t0=t, heu=heu_eaf, acc=acc_wait, model='rtn2', heu_all=heu_all_stages, plant='plant2')

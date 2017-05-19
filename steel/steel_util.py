@@ -129,16 +129,53 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
         energy_cost = np.dot(y_en, np.array(steel_rtn.price_energy))
         log.info('Calculated Energy Cost %f' % energy_cost)
 
-# Change this back
+# Change this back - price
     if False:
         plt.figure()
         plt.plot(range(1, 25), test_case['energy_price'], marker='s', markersize=10)
         plt.xlim(0, 25)
-        plt.ylim(0, 50)
+        plt.ylim(0, 250)
         plt.xlabel('Hour')
         plt.ylabel('Price [$\MW]')
         plt.grid(True)
         plt.savefig('%sprice_%s.pdf' % (record_dir, test_case.get('price_id', test_case['doc'])))
+        # plt.show()
+        plt.close()
+
+# my edits - cost (needs editing)
+    if True:
+        yy = schedule_json['yy']
+        plt.figure()
+        energy_cost =[]
+        for t in range(steel_rtn.num_t):
+            pos = SteelHelper.cal_varpos_taskres_t(steel_rtn.num_t, steel_rtn.resources['EN'][0], t)
+            energy_cost.append(yy[pos]*steel_rtn.price_energy[t])
+
+        step = len(energy_cost)/24
+        plt.plot(range(1, 25), energy_cost[::step], marker='s', markersize=10)
+        plt.xlim(0, 25)
+        plt.ylim(0, 10000)
+        plt.xlabel('Hour')
+        plt.ylabel('$/hour')
+        plt.grid(True)
+        plt.savefig('%scost_%s.pdf' % (record_dir, test_case.get('price_id', test_case['doc'])))
+        # plt.show()
+        plt.close()
+
+# my edits - energy consumption
+    if False:
+        yy = schedule_json['yy']
+        plt.figure()
+        y_en = opt_math_model.con_en_x.dot(np.array(xx))
+
+        step = len(energy_cost)/24
+        plt.plot(range(1, 25), y_en[::step], marker='s', markersize=10)
+        plt.xlim(0, 25)
+        plt.ylim(0, 60)
+        plt.xlabel('Hour')
+        plt.ylabel('MWh')
+        plt.grid(True)
+        plt.savefig('%senergy_%s.pdf' % (record_dir, test_case.get('price_id', test_case['doc'])))
         # plt.show()
         plt.close()
 
