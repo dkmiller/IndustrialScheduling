@@ -152,9 +152,10 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
             energy_cost.append(yy[pos]*steel_rtn.price_energy[t])
 
         step = len(energy_cost)/24
-        plt.plot(range(1, 25), energy_cost[::step], marker='s', markersize=10)
+        temp = [sum(energy_cost[current:current+step])for current in xrange(0,len(energy_cost),step)]
+        plt.plot(range(1, 25), temp, marker='s', markersize=10)
         plt.xlim(0, 25)
-        plt.ylim(0, 10000)
+        plt.ylim(0, 12000)
         plt.xlabel('Hour')
         plt.ylabel('$/hour')
         plt.grid(True)
@@ -163,15 +164,16 @@ def draw_schedule(test_case, record_dir='tmp/', options=None):
         plt.close()
 
 # my edits - energy consumption
-    if False:
+    if True:
         yy = schedule_json['yy']
         plt.figure()
         y_en = opt_math_model.con_en_x.dot(np.array(xx))
 
         step = len(energy_cost)/24
-        plt.plot(range(1, 25), y_en[::step], marker='s', markersize=10)
+        temp = [sum(y_en[current:current+step])for current in xrange(0,len(y_en),step)]
+        plt.plot(range(1, 25), temp, marker='s', markersize=10)
         plt.xlim(0, 25)
-        plt.ylim(0, 60)
+        plt.ylim(0, 200)
         plt.xlabel('Hour')
         plt.ylabel('MWh')
         plt.grid(True)
